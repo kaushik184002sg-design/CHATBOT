@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      base: '/CHATBOT/',
       define: {
         'process.env.VITE_API_KEY': JSON.stringify(env.VITE_API_KEY)
       },

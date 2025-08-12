@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROJ-BLE Education Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --color-bg-primary: #0D0B14;
+        --color-bg-secondary: rgba(26, 20, 45, 0.5); /* Glass BG */
+        --color-bg-user-message: rgba(255, 183, 77, 0.25); /* Glass BG for user */
+        --color-text-primary: #EAE8F0;
+        --color-text-secondary: #A9A3B8;
+        --color-accent-amber: #FFB74D;
+        --color-accent-cyan: #00F2FF;
+        --color-accent-magenta: #F55DFF;
+        --color-border: rgba(255, 255, 255, 0.15);
+      }
+
+      .high-contrast {
+        --color-bg-primary: #000000;
+        --color-bg-secondary: rgba(17, 17, 17, 0.6); /* Glass BG */
+        --color-bg-user-message: rgba(255, 193, 7, 0.4); /* Glass BG for user */
+        --color-text-primary: #FFFFFF;
+        --color-text-secondary: #E0E0E0;
+        --color-accent-amber: #FFC107;
+        --color-accent-cyan: #03A9F4;
+        --color-accent-magenta: #E91E63;
+        --color-border: rgba(255, 255, 255, 0.6);
+      }
+
+      body {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        overflow: hidden;
+      }
+      
+      #background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+      }
+
+      .blob-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--color-accent-cyan);
+        animation: blob-anim-1 20s infinite alternate;
+      }
+
+      .blob-2 {
+        width: 300px;
+        height: 300px;
+        background: var(--color-accent-magenta);
+        animation: blob-anim-2 25s infinite alternate;
+      }
+
+      .blob-3 {
+        width: 250px;
+        height: 250px;
+        background: var(--color-accent-amber);
+        animation: blob-anim-3 15s infinite alternate;
+      }
+
+      @keyframes blob-anim-1 {
+        0% { transform: translate(10vw, 10vh); }
+        100% { transform: translate(60vw, 70vh); }
+      }
+      @keyframes blob-anim-2 {
+        0% { transform: translate(80vw, 20vh); }
+        100% { transform: translate(10vw, 60vh); }
+      }
+      @keyframes blob-anim-3 {
+        0% { transform: translate(40vw, 80vh); }
+        100% { transform: translate(70vw, 10vh); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react": "https://esm.sh/react@^19.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="background-animation">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

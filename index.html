@@ -2,61 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROJ-BLE Education Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Grey glassmorphism scrollbar for webkit browsers */
-      ::-webkit-scrollbar {
-        width: 8px;
-        background: rgba(229, 231, 235, 0.4); /* light grey glass */
-        border-radius: 8px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: rgba(107, 114, 128, 0.3); /* medium grey glass */
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(107, 114, 128, 0.15);
-        backdrop-filter: blur(4px);
-      }
-      @keyframes fade-in-chat {
-        0% {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-      .animate-fade-in-chat {
-        animation: fade-in-chat 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      :root {
+        --color-bg-primary: #E6F3FF;
+        --color-bg-secondary: #CCE7FF;
+        --color-bg-user-message: #B3DBFF;
+        --color-text-primary: #1E3A8A;
+        --color-text-secondary: #3B82F6;
+        --color-accent-amber: #2563EB;
+        --color-accent-cyan: #1D4ED8;
+        --color-accent-magenta: #1E40AF;
+        --color-border: #93C5FD;
       }
 
-      :root {
-        /* Light Mode */
-        --color-bg-primary: #C9DFF6;
-        --color-bg-secondary: rgba(173, 205, 238, 0.7); /* #ADCDEE glass */
-        --color-bg-user-message: rgba(123, 176, 225, 0.18); /* #7BB0E1 glass */
-        --color-text-primary: #1A253C;
-        --color-text-secondary: #33528A;
-        --color-accent-amber: #33528A;
-        --color-accent-cyan: #92C1EB;
-        --color-accent-magenta: #ADCDEE;
-        --color-border: rgba(26, 37, 60, 0.15);
+      .lite-mode {
+        --color-bg-primary: #E6F3FF;
+        --color-bg-secondary: #CCE7FF;
+        --color-bg-user-message: #B3DBFF;
+        --color-text-primary: #1E3A8A;
+        --color-text-secondary: #3B82F6;
+        --color-accent-amber: #2563EB;
+        --color-accent-cyan: #1D4ED8;
+        --color-accent-magenta: #1E40AF;
+        --color-border: #93C5FD;
       }
 
       .dark-mode {
-        /* Dark Mode */
-        --color-bg-primary: #1A253C;
-        --color-bg-secondary: rgba(51, 82, 138, 0.7); /* #33528A glass */
-        --color-bg-user-message: rgba(90, 142, 204, 0.18); /* #5A8ECC glass */
-        --color-text-primary: #C9DFF6;
-        --color-text-secondary: #ADCDEE;
-        --color-accent-amber: #4671B6;
-        --color-accent-cyan: #C9DFF6;
-        --color-accent-magenta: #ADCDEE;
-        --color-border: rgba(201, 223, 246, 0.15);
+        --color-bg-primary: #0F172A;
+        --color-bg-secondary: #1E293B;
+        --color-bg-user-message: #334155;
+        --color-text-primary: #E2E8F0;
+        --color-text-secondary: #94A3B8;
+        --color-accent-amber: #3B82F6;
+        --color-accent-cyan: #2563EB;
+        --color-accent-magenta: #1D4ED8;
+        --color-border: #475569;
       }
 
       body {
@@ -64,6 +48,40 @@
         color: var(--color-text-primary);
         transition: background-color 0.3s ease, color 0.3s ease;
         overflow: hidden;
+      }
+
+      .lite-mode body {
+        background: linear-gradient(135deg, #E6F3FF 0%, #CCE7FF 50%, #B3DBFF 100%);
+      }
+
+      .dark-mode body {
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+      }
+
+      .lite-mode #background-animation .blob-1 {
+        background: var(--color-accent-cyan);
+        opacity: 0.18;
+      }
+      .lite-mode #background-animation .blob-2 {
+        background: var(--color-accent-magenta);
+        opacity: 0.13;
+      }
+      .lite-mode #background-animation .blob-3 {
+        background: var(--color-accent-amber);
+        opacity: 0.10;
+      }
+
+      .dark-mode #background-animation .blob-1 {
+        background: var(--color-accent-cyan);
+        opacity: 0.25;
+      }
+      .dark-mode #background-animation .blob-2 {
+        background: var(--color-accent-magenta);
+        opacity: 0.20;
+      }
+      .dark-mode #background-animation .blob-3 {
+        background: var(--color-accent-amber);
+        opacity: 0.15;
       }
       
       #background-animation {
@@ -86,21 +104,21 @@
       .blob-1 {
         width: 400px;
         height: 400px;
-        background: var(--color-accent-amber); /* blue */
+        background: var(--color-accent-cyan);
         animation: blob-anim-1 20s infinite alternate;
       }
 
       .blob-2 {
         width: 300px;
         height: 300px;
-        background: var(--color-accent-cyan); /* grey */
+        background: var(--color-accent-magenta);
         animation: blob-anim-2 25s infinite alternate;
       }
 
       .blob-3 {
         width: 250px;
         height: 250px;
-        background: var(--color-accent-magenta); /* blue */
+        background: var(--color-accent-amber);
         animation: blob-anim-3 15s infinite alternate;
       }
 
@@ -116,9 +134,48 @@
         0% { transform: translate(40vw, 80vh); }
         100% { transform: translate(70vw, 10vh); }
       }
+
+      /* Custom Scrollbar with Glassmorphism */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: background 0.3s ease;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .dark-mode ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .dark-mode ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .lite-mode ::-webkit-scrollbar-thumb {
+        background: rgba(30, 58, 138, 0.15);
+        border: 1px solid rgba(30, 58, 138, 0.3);
+      }
+
+      .lite-mode ::-webkit-scrollbar-thumb:hover {
+        background: rgba(30, 58, 138, 0.25);
+      }
     </style>
 
-<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="/index.css">
   <script type="importmap">
 {
   "imports": {
@@ -129,7 +186,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/CHATBOT/assets/index-jMORtfcp.js"></script>
+  <script type="module" crossorigin src="/CHATBOT/assets/index-D24Hv0Ty.js"></script>
 </head>
   <body>
     <div id="background-animation">
@@ -137,6 +194,6 @@
       <div class="blob blob-2"></div>
       <div class="blob blob-3"></div>
     </div>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>

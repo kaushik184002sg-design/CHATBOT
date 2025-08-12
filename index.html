@@ -2,33 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROJ-BLE Education Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      :root {
-        --color-bg-primary: #0D0B14;
-        --color-bg-secondary: rgba(26, 20, 45, 0.5); /* Glass BG */
-        --color-bg-user-message: rgba(255, 183, 77, 0.25); /* Glass BG for user */
-        --color-text-primary: #EAE8F0;
-        --color-text-secondary: #A9A3B8;
-        --color-accent-amber: #FFB74D;
-        --color-accent-cyan: #00F2FF;
-        --color-accent-magenta: #F55DFF;
-        --color-border: rgba(255, 255, 255, 0.15);
+      /* Grey glassmorphism scrollbar for webkit browsers */
+      ::-webkit-scrollbar {
+        width: 8px;
+        background: rgba(229, 231, 235, 0.4); /* light grey glass */
+        border-radius: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(107, 114, 128, 0.3); /* medium grey glass */
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(107, 114, 128, 0.15);
+        backdrop-filter: blur(4px);
+      }
+      @keyframes fade-in-chat {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .animate-fade-in-chat {
+        animation: fade-in-chat 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .high-contrast {
-        --color-bg-primary: #000000;
-        --color-bg-secondary: rgba(17, 17, 17, 0.6); /* Glass BG */
-        --color-bg-user-message: rgba(255, 193, 7, 0.4); /* Glass BG for user */
-        --color-text-primary: #FFFFFF;
-        --color-text-secondary: #E0E0E0;
-        --color-accent-amber: #FFC107;
-        --color-accent-cyan: #03A9F4;
-        --color-accent-magenta: #E91E63;
-        --color-border: rgba(255, 255, 255, 0.6);
+      :root {
+        /* Light Mode */
+        --color-bg-primary: #C9DFF6;
+        --color-bg-secondary: rgba(173, 205, 238, 0.7); /* #ADCDEE glass */
+        --color-bg-user-message: rgba(123, 176, 225, 0.18); /* #7BB0E1 glass */
+        --color-text-primary: #1A253C;
+        --color-text-secondary: #33528A;
+        --color-accent-amber: #33528A;
+        --color-accent-cyan: #92C1EB;
+        --color-accent-magenta: #ADCDEE;
+        --color-border: rgba(26, 37, 60, 0.15);
+      }
+
+      .dark-mode {
+        /* Dark Mode */
+        --color-bg-primary: #1A253C;
+        --color-bg-secondary: rgba(51, 82, 138, 0.7); /* #33528A glass */
+        --color-bg-user-message: rgba(90, 142, 204, 0.18); /* #5A8ECC glass */
+        --color-text-primary: #C9DFF6;
+        --color-text-secondary: #ADCDEE;
+        --color-accent-amber: #4671B6;
+        --color-accent-cyan: #C9DFF6;
+        --color-accent-magenta: #ADCDEE;
+        --color-border: rgba(201, 223, 246, 0.15);
       }
 
       body {
@@ -58,21 +86,21 @@
       .blob-1 {
         width: 400px;
         height: 400px;
-        background: var(--color-accent-cyan);
+        background: var(--color-accent-amber); /* blue */
         animation: blob-anim-1 20s infinite alternate;
       }
 
       .blob-2 {
         width: 300px;
         height: 300px;
-        background: var(--color-accent-magenta);
+        background: var(--color-accent-cyan); /* grey */
         animation: blob-anim-2 25s infinite alternate;
       }
 
       .blob-3 {
         width: 250px;
         height: 250px;
-        background: var(--color-accent-amber);
+        background: var(--color-accent-magenta); /* blue */
         animation: blob-anim-3 15s infinite alternate;
       }
 
@@ -90,7 +118,7 @@
       }
     </style>
 
-<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="./index.css">
   <script type="importmap">
 {
   "imports": {
@@ -101,7 +129,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/CHATBOT/assets/index-Ca25zcGL.js"></script>
+  <script type="module" crossorigin src="/CHATBOT/assets/index-jMORtfcp.js"></script>
 </head>
   <body>
     <div id="background-animation">

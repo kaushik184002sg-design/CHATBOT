@@ -8,27 +8,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
-        --color-bg-primary: #0D0B14;
-        --color-bg-secondary: rgba(26, 20, 45, 0.5); /* Glass BG */
-        --color-bg-user-message: rgba(255, 183, 77, 0.25); /* Glass BG for user */
-        --color-text-primary: #EAE8F0;
-        --color-text-secondary: #A9A3B8;
-        --color-accent-amber: #FFB74D;
-        --color-accent-cyan: #00F2FF;
-        --color-accent-magenta: #F55DFF;
-        --color-border: rgba(255, 255, 255, 0.15);
+        --color-bg-primary: #E6F3FF;
+        --color-bg-secondary: #CCE7FF;
+        --color-bg-user-message: #B3DBFF;
+        --color-text-primary: #1E3A8A;
+        --color-text-secondary: #3B82F6;
+        --color-accent-amber: #2563EB;
+        --color-accent-cyan: #1D4ED8;
+        --color-accent-magenta: #1E40AF;
+        --color-border: #93C5FD;
       }
 
-      .high-contrast {
-        --color-bg-primary: #000000;
-        --color-bg-secondary: rgba(17, 17, 17, 0.6); /* Glass BG */
-        --color-bg-user-message: rgba(255, 193, 7, 0.4); /* Glass BG for user */
-        --color-text-primary: #FFFFFF;
-        --color-text-secondary: #E0E0E0;
-        --color-accent-amber: #FFC107;
-        --color-accent-cyan: #03A9F4;
-        --color-accent-magenta: #E91E63;
-        --color-border: rgba(255, 255, 255, 0.6);
+      .lite-mode {
+        --color-bg-primary: #E6F3FF;
+        --color-bg-secondary: #CCE7FF;
+        --color-bg-user-message: #B3DBFF;
+        --color-text-primary: #1E3A8A;
+        --color-text-secondary: #3B82F6;
+        --color-accent-amber: #2563EB;
+        --color-accent-cyan: #1D4ED8;
+        --color-accent-magenta: #1E40AF;
+        --color-border: #93C5FD;
+      }
+
+      .dark-mode {
+        --color-bg-primary: #0F172A;
+        --color-bg-secondary: #1E293B;
+        --color-bg-user-message: #334155;
+        --color-text-primary: #E2E8F0;
+        --color-text-secondary: #94A3B8;
+        --color-accent-amber: #3B82F6;
+        --color-accent-cyan: #2563EB;
+        --color-accent-magenta: #1D4ED8;
+        --color-border: #475569;
       }
 
       body {
@@ -36,6 +48,40 @@
         color: var(--color-text-primary);
         transition: background-color 0.3s ease, color 0.3s ease;
         overflow: hidden;
+      }
+
+      .lite-mode body {
+        background: linear-gradient(135deg, #E6F3FF 0%, #CCE7FF 50%, #B3DBFF 100%);
+      }
+
+      .dark-mode body {
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+      }
+
+      .lite-mode #background-animation .blob-1 {
+        background: var(--color-accent-cyan);
+        opacity: 0.18;
+      }
+      .lite-mode #background-animation .blob-2 {
+        background: var(--color-accent-magenta);
+        opacity: 0.13;
+      }
+      .lite-mode #background-animation .blob-3 {
+        background: var(--color-accent-amber);
+        opacity: 0.10;
+      }
+
+      .dark-mode #background-animation .blob-1 {
+        background: var(--color-accent-cyan);
+        opacity: 0.25;
+      }
+      .dark-mode #background-animation .blob-2 {
+        background: var(--color-accent-magenta);
+        opacity: 0.20;
+      }
+      .dark-mode #background-animation .blob-3 {
+        background: var(--color-accent-amber);
+        opacity: 0.15;
       }
       
       #background-animation {
@@ -87,6 +133,45 @@
       @keyframes blob-anim-3 {
         0% { transform: translate(40vw, 80vh); }
         100% { transform: translate(70vw, 10vh); }
+      }
+
+      /* Custom Scrollbar with Glassmorphism */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: background 0.3s ease;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .dark-mode ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .dark-mode ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .lite-mode ::-webkit-scrollbar-thumb {
+        background: rgba(30, 58, 138, 0.15);
+        border: 1px solid rgba(30, 58, 138, 0.3);
+      }
+
+      .lite-mode ::-webkit-scrollbar-thumb:hover {
+        background: rgba(30, 58, 138, 0.25);
       }
     </style>
   <script type="importmap">

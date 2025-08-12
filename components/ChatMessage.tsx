@@ -57,14 +57,14 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isLoading = f
 
   return (
     <div className={`flex items-start gap-4 ${isModel ? '' : 'flex-row-reverse'}`}>
-      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isModel ? 'bg-[var(--color-accent-magenta)] shadow-[0_0_10px_var(--color-accent-magenta)]' : 'bg-[var(--color-accent-amber)] shadow-[0_0_10px_var(--color-accent-amber)]'}`}>
+      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isModel ? 'bg-[var(--color-accent-magenta)]' : 'bg-[var(--color-accent-amber)]'}`}>
         {isModel ? <BotIcon className="w-5 h-5 text-white" /> : <UserIcon className="w-5 h-5 text-black" />}
       </div>
       <div 
         className={`p-4 rounded-xl max-w-2xl transition-all duration-300 border border-[var(--color-border)] backdrop-blur-lg
         ${isModel 
-          ? 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] rounded-tl-none shadow-[0_0_20px_rgba(245,93,255,0.2)]' 
-          : 'bg-[var(--color-bg-user-message)] text-[var(--color-text-primary)] rounded-tr-none shadow-[0_0_20px_rgba(255,183,77,0.3)]'}`}
+          ? 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] rounded-tl-none' 
+          : 'bg-[var(--color-bg-user-message)] text-[var(--color-text-primary)] rounded-tr-none'}`}
       >
         <div className="flex justify-between items-center mb-1">
           <span className="text-xs text-[var(--color-text-secondary)]">{message.timestamp}</span>

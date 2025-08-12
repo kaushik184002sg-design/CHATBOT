@@ -49,7 +49,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }
       <button
         type="submit"
         disabled={isLoading || !input.trim()}
-        className="w-12 h-12 flex-shrink-0 bg-[var(--color-accent-amber)] text-black rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_15px_var(--color-accent-amber)] disabled:bg-[var(--color-text-secondary)] disabled:opacity-50 disabled:text-black/50 disabled:cursor-not-allowed disabled:shadow-none"
+        className="w-12 h-12 flex-shrink-0 bg-[var(--color-accent-amber)] text-black rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-90 disabled:bg-[var(--color-text-secondary)] disabled:opacity-50 disabled:text-black/50 disabled:cursor-not-allowed"
         aria-label="Send message"
       >
         <SendIcon className="w-6 h-6" />

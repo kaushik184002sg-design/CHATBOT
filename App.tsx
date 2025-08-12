@@ -12,19 +12,21 @@ const App: React.FC = () => {
   const [chat, setChat] = useState<Chat | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [theme, setTheme] = useState<'dark' | 'high-contrast'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
+  // Cycle through dark -> lite -> high-contrast -> dark
   const toggleTheme = useCallback(() => {
-    setTheme(prevTheme => (prevTheme === 'dark' ? 'high-contrast' : 'dark'));
+  setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   }, []);
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'high-contrast') {
-      root.classList.add('high-contrast');
+    root.classList.remove('lite-mode', 'dark-mode');
+    if (theme === 'light') {
+      root.classList.add('lite-mode');
     } else {
-      root.classList.remove('high-contrast');
+      root.classList.add('dark-mode');
     }
   }, [theme]);
 
@@ -102,22 +104,32 @@ const App: React.FC = () => {
       <header className="bg-[var(--color-bg-secondary)] backdrop-blur-lg border-b border-[var(--color-border)] p-4 shadow-lg transition-colors">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="bg-[var(--color-accent-magenta)] p-2 rounded-full transition-colors shadow-[0_0_15px_var(--color-accent-magenta)]">
+            <div className="bg-[var(--color-accent-magenta)] p-2 rounded-full transition-colors">
               <BotIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-[var(--color-text-primary)] transition-colors" style={{ textShadow: '0 0 8px var(--color-accent-cyan)'}}>PROJ-BLE Education Assistant</h1>
+              <h1 className="text-xl font-bold text-[var(--color-text-primary)] transition-colors">PROJ-BLE Education Assistant</h1>
               <p className="text-sm text-[var(--color-text-secondary)] transition-colors">Empowering the Future of Education</p>
             </div>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-black/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-[var(--color-accent-amber)] transition-all"
-            aria-label="Toggle high contrast mode"
-            title="Toggle high contrast mode"
-          >
-            <ContrastIcon className="w-6 h-6" />
-          </button>
+          <div className="flex items-center">
+            <label className="flex items-center cursor-pointer select-none">
+              <span className="mr-2 text-[var(--color-text-secondary)]">{theme === 'light' ? 'Light' : 'Dark'} Mode</span>
+              <input
+                type="checkbox"
+                checked={theme === 'dark'}
+                onChange={toggleTheme}
+                className="hidden"
+                aria-label="Toggle theme"
+              />
+              <span
+                className={`w-10 h-6 flex items-center bg-[var(--color-bg-secondary)] rounded-full p-1 transition-colors ${theme === 'dark' ? 'justify-end' : 'justify-start'}`}
+                style={{ display: 'flex' }}
+              >
+                <span className={`w-4 h-4 bg-[var(--color-accent-amber)] rounded-full transition-transform duration-300`}></span>
+              </span>
+            </label>
+          </div>
         </div>
       </header>
       
